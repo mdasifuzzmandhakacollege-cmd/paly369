@@ -1,0 +1,104 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global Safety Net: Default-deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Role-Based Admin Guard
+    function isAdmin() {
+      return isSignedIn() && (
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid)) ||
+        request.auth.token.email == 'md.asifuzzman.dhakacollege@gmail.com'
+      );
+    }
+
+    // Admins Collection
+    match /admins/{adminId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // User Profile
+    match /users/{userId} {
+      allow get: if isOwner(userId) || isAdmin();
+      allow list: if isAdmin();
+      allow create: if (isOwner(userId) || isAdmin()) && isValidId(userId);
+      allow update: if isOwner(userId) || isAdmin();
+      allow delete: if isAdmin();
+
+      // Real-time Wallets Subcollection
+      match /wallets/{walletId} {
+        allow read: if isOwner(userId) || isAdmin();
+        allow create: if (isOwner(userId) || isAdmin()) && isValidId(walletId);
+        allow update: if isOwner(userId) || isAdmin();
+        allow delete: if isAdmin();
+      }
+
+      // Real-time Transactions Subcollection
+      match /transactions/{txId} {
+        allow read: if isOwner(userId) || isAdmin();
+        allow create: if (isOwner(userId) || isAdmin()) && isValidId(txId);
+        allow update: if false; // Transaction ledger records are append-only & immutable
+        allow delete: if false;
+      }
+
+      // KYC Documents Subcollection
+      match /kyc_documents/{docId} {
+        allow read: if isOwner(userId) || isAdmin();
+        allow create: if isOwner(userId) && isValidId(docId);
+        allow update: if isOwner(userId) || isAdmin();
+        allow delete: if isOwner(userId) || isAdmin();
+      }
+
+      // Real-time Notifications Subcollection
+      match /notifications/{notificationId} {
+        allow read: if isOwner(userId) || isAdmin();
+        allow create: if isOwner(userId) && isValidId(notificationId);
+        allow update: if isOwner(userId) || isAdmin();
+        allow delete: if isOwner(userId) || isAdmin();
+      }
+    }
+
+    // Connection test doc
+    match /test/{docId} {
+      allow read: if true;
+    }
+
+    // Real-Time SystemErrors Telemetry & Stack Trace Collection
+    match /SystemErrors/{errorId} {
+      allow create: if isValidId(errorId);
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Real-Time Security Events (HMAC verifications, invalid signatures, replay attacks)
+    match /security_events/{eventId} {
+      allow read, write: if isAdmin();
+    }
+
+    // Edge IP Rate Limiting & Threat Mitigation Collection
+    match /ip_rate_limits/{ipId} {
+      allow read, write: if isAdmin();
+    }
+
+    // Webhook Interception & Audit History Logs
+    match /webhook_logs/{webhookId} {
+      allow read, write: if isAdmin();
+    }
+  }
+}
+

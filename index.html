@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="bn" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>PLAY369 | Seamless Wallet Core &amp; iGaming Platform</title>
+    <meta name="description" content="Production-grade B2B Seamless Wallet engine for iGaming platforms featuring PostgreSQL ACID schema with Row-Level Locking, HMAC-SHA256 signature verification, Idempotency engine, provider simulation, and real-time concurrency stress tester." />
+    
+    <!-- Favicons & App Icons -->
+    <link rel="icon" type="image/svg+xml" href="/play369-logo.svg" />
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Fonts: Inter & Noto Sans Bengali for ultra-crisp typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Bengali:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <!-- PWA & Mobile Fullscreen Meta -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#02180e" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="PLAY369" />
+    <meta name="application-name" content="PLAY369" />
+    
+    <!-- Open Graph & Search Engine Previews -->
+    <meta property="og:site_name" content="PLAY369" />
+    <meta property="og:title" content="PLAY369 | Next-Gen Seamless Gaming &amp; Casino Platform" />
+    <meta property="og:description" content="Official PLAY369 Next-Gen Seamless Gaming Platform featuring real-time casino slots, live dealers, Aviator, instant bKash/Nagad cashier, and VIP rewards." />
+    <meta property="og:image" content="/play369-og-banner.png" />
+    <meta property="og:image:secure_url" content="/play369-og-banner.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="PLAY369 Official Emblem and Logo" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PLAY369 | Next-Gen Seamless Gaming" />
+    <meta name="twitter:description" content="Official PLAY369 Next-Gen Seamless Gaming Platform with instant bKash/Nagad deposits &amp; fast withdrawals." />
+    <meta name="twitter:image" content="/play369-og-banner.png" />
+
+    <!-- Defensive browser global shims -->
+    <script>
+      (function() {
+        if (typeof window !== 'undefined') {
+          window.global = window;
+          window.process = window.process || { env: { NODE_ENV: 'production' } };
+          window.Buffer = window.Buffer || [];
+        }
+      })();
+    </script>
+  </head>
+  <body class="bg-[#02180e] text-slate-100 select-none antialiased" style="background-color: #02180e; color: #f1f5f9; margin: 0; min-height: 100vh;">
+    <div id="root">
+      <!-- High-performance Initial Fullscreen Loading Shell -->
+      <div id="app-initial-loader" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; background: radial-gradient(circle at center, #063824 0%, #021a11 60%, #010f09 100%); color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; text-align: center; padding: 24px; box-sizing: border-box;">
+        <div style="position: relative; width: 140px; height: 140px; margin-bottom: 24px;">
+          <img src="/play369-logo.svg" alt="PLAY369 Logo" style="width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 10px 25px rgba(0,0,0,0.8)); animation: p369-pulse 2s ease-in-out infinite;" />
+        </div>
+        <div style="width: 36px; height: 36px; border: 3px solid rgba(245, 158, 11, 0.2); border-top-color: #f59e0b; border-radius: 50%; animation: p369-spin 0.75s linear infinite; margin-bottom: 16px;"></div>
+        <h1 style="margin: 0 0 6px 0; font-size: 22px; font-weight: 900; letter-spacing: 1px; color: #ffffff;">PLAY<span style="color: #fbbf24;">369</span></h1>
+        <p style="margin: 0 0 4px 0; font-size: 11px; font-weight: 800; letter-spacing: 2px; color: #fef08a; text-transform: uppercase;">Next-Gen Seamless Gaming</p>
+        <p style="margin: 0; font-size: 12px; color: #6ee7b7; font-weight: 500;">অপেক্ষা করুন, লোড হচ্ছে...</p>
+        <style>
+          @keyframes p369-spin { to { transform: rotate(360deg); } }
+          @keyframes p369-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+        </style>
+      </div>
+    </div>
+    <script async defer src="https://apis.google.com/js/api.js"></script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

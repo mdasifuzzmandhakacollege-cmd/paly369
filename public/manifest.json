@@ -1,0 +1,67 @@
+{
+  "name": "PLAY369 - Next-Gen Seamless Gaming",
+  "short_name": "PLAY369",
+  "description": "PLAY369 Next-Gen Seamless Gaming Platform featuring Casino Slots, Live Dealers, Aviator, Instant Cashier & VIP Club",
+  "start_url": "/",
+  "id": "play369-igaming-app",
+  "display": "standalone",
+  "background_color": "#02180e",
+  "theme_color": "#02180e",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/play369-logo.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["games", "entertainment", "casino"],
+  "shortcuts": [
+    {
+      "name": "Casino Lobby",
+      "short_name": "Lobby",
+      "description": "Play Aviator, Slots and Live Dealers",
+      "url": "/?tab=lobby",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Instant Cashier",
+      "short_name": "Cashier",
+      "description": "Deposit & Withdraw via bKash/Nagad",
+      "url": "/?tab=cashier",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "VIP Club",
+      "short_name": "VIP",
+      "description": "Check VIP Tier & Rebate Cashbacks",
+      "url": "/?tab=vip",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

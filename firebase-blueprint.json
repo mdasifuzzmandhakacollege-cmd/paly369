@@ -1,0 +1,247 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "GamePlay365 registered player profile",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "username": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 255 },
+        "phone": { "type": "string", "maxLength": 30 },
+        "currency": { "type": "string", "enum": ["BDT", "USD"] },
+        "vipTier": { "type": "string", "maxLength": 50 },
+        "vipPoints": { "type": "number" },
+        "role": { "type": "string", "enum": ["ADMIN", "PLAYER", "VIP", "OPERATOR"] },
+        "isAdmin": { "type": "boolean" },
+        "affiliateCode": { "type": "string", "maxLength": 50 },
+        "photoURL": { "type": "string", "maxLength": 512 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "username", "currency", "vipTier"]
+    },
+    "Admin": {
+      "title": "Admin",
+      "description": "System operators and administrative accounts with elevated role-based permissions",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 255 },
+        "role": { "type": "string", "enum": ["SUPER_ADMIN", "OPERATOR", "COMPLIANCE"] },
+        "assignedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "role", "assignedAt"]
+    },
+    "Wallet": {
+      "title": "Wallet",
+      "description": "Real-time user financial ledger balance",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "currency": { "type": "string", "enum": ["BDT", "USD"] },
+        "realBalance": { "type": "number" },
+        "bonusBalance": { "type": "number" },
+        "lockedBalance": { "type": "number" },
+        "version": { "type": "number" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "userId", "currency", "realBalance"]
+    },
+    "Transaction": {
+      "title": "Transaction",
+      "description": "Real-time gaming & cashier financial ledger transaction record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "transactionId": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "walletId": { "type": "string", "maxLength": 128 },
+        "providerId": { "type": "string", "maxLength": 100 },
+        "gameId": { "type": "string", "maxLength": 100 },
+        "roundId": { "type": "string", "maxLength": 128 },
+        "type": { "type": "string", "enum": ["BET", "WIN", "REFUND", "DEPOSIT", "WITHDRAW"] },
+        "amount": { "type": "number" },
+        "currency": { "type": "string", "enum": ["BDT", "USD"] },
+        "beforeBalance": { "type": "number" },
+        "afterBalance": { "type": "number" },
+        "status": { "type": "string", "enum": ["COMMITTED", "FAILED", "ROLLEDBACK"] },
+        "referenceTransactionId": { "type": "string", "maxLength": 128 },
+        "auditHash": { "type": "string", "maxLength": 256 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "transactionId", "userId", "type", "amount", "currency", "status"]
+    },
+    "KycDocument": {
+      "title": "KycDocument",
+      "description": "Google Drive KYC verification record and status",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 255 },
+        "mimeType": { "type": "string", "maxLength": 128 },
+        "url": { "type": "string", "maxLength": 512 },
+        "docType": { "type": "string", "maxLength": 50 },
+        "status": { "type": "string", "enum": ["PENDING", "VERIFIED", "REJECTED"] },
+        "rejectionReason": { "type": "string", "maxLength": 255 },
+        "sizeBytes": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "userId", "name", "status"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "Real-time user notification event for withdrawals, bonus unlocks and system alerts",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 255 },
+        "message": { "type": "string", "maxLength": 1000 },
+        "type": { "type": "string", "enum": ["WITHDRAWAL_APPROVED", "BONUS_UNLOCKED", "DEPOSIT_CONFIRMED", "VIP_UPGRADE", "AFFILIATE_COMMISSION", "SYSTEM_ALERT"] },
+        "amount": { "type": "number" },
+        "currency": { "type": "string", "enum": ["BDT", "USD"] },
+        "isRead": { "type": "boolean" },
+        "actionUrl": { "type": "string", "maxLength": 255 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "userId", "title", "message", "type", "isRead"]
+    },
+    "SecurityEvent": {
+      "title": "SecurityEvent",
+      "description": "Real-time security telemetry for HMAC validation, signature tampering, timestamp replay attacks, and rate limits",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "eventType": { "type": "string", "enum": ["HMAC_VALIDATED", "INVALID_SIGNATURE", "EXPIRED_TIMESTAMP", "PAYLOAD_TAMPERED", "RATE_LIMIT_EXCEEDED", "IP_BLOCKED", "REPLAY_ATTACK"] },
+        "providerId": { "type": "string", "maxLength": 100 },
+        "endpoint": { "type": "string", "maxLength": 150 },
+        "ipAddress": { "type": "string", "maxLength": 64 },
+        "country": { "type": "string", "maxLength": 10 },
+        "status": { "type": "string", "enum": ["ALLOWED", "BLOCKED", "FLAGGED", "CHALLENGED"] },
+        "signatureReceived": { "type": "string", "maxLength": 256 },
+        "signatureExpected": { "type": "string", "maxLength": 256 },
+        "timestampReceived": { "type": "number" },
+        "clockSkewMs": { "type": "number" },
+        "payloadPreview": { "type": "string", "maxLength": 2000 },
+        "message": { "type": "string", "maxLength": 500 },
+        "severity": { "type": "string", "enum": ["INFO", "WARNING", "HIGH", "CRITICAL"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "eventType", "providerId", "endpoint", "ipAddress", "status", "severity", "createdAt"]
+    },
+    "IpRateLimit": {
+      "title": "IpRateLimit",
+      "description": "Edge IP rate-limiting and throttle statistics",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 64 },
+        "ip": { "type": "string", "maxLength": 64 },
+        "providerId": { "type": "string", "maxLength": 100 },
+        "country": { "type": "string", "maxLength": 10 },
+        "requestCount": { "type": "number" },
+        "rps": { "type": "number" },
+        "limitRps": { "type": "number" },
+        "violationsCount": { "type": "number" },
+        "status": { "type": "string", "enum": ["NORMAL", "THROTTLED", "BLOCKED", "WHITELISTED"] },
+        "lastSeenAt": { "type": "string", "format": "date-time" },
+        "blockedUntil": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "ip", "requestCount", "rps", "status"]
+    },
+    "WebhookLog": {
+      "title": "WebhookLog",
+      "description": "Incoming payment provider and game provider webhook payload logs and signature audit records",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "provider": { "type": "string", "maxLength": 50 },
+        "eventType": { "type": "string", "maxLength": 100 },
+        "eventId": { "type": "string", "maxLength": 128 },
+        "signature": { "type": "string", "maxLength": 256 },
+        "expectedSignature": { "type": "string", "maxLength": 256 },
+        "signatureValid": { "type": "boolean" },
+        "payload": { "type": "object" },
+        "headers": { "type": "object" },
+        "httpStatus": { "type": "number" },
+        "processed": { "type": "boolean" },
+        "processResult": { "type": "string", "maxLength": 500 },
+        "latencyMs": { "type": "number" },
+        "retryCount": { "type": "number" },
+        "lastRetriedAt": { "type": "string", "format": "date-time" },
+        "ipAddress": { "type": "string", "maxLength": 64 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "provider", "eventId", "signature", "signatureValid", "processed", "createdAt"]
+    },
+    "SystemError": {
+      "title": "SystemError",
+      "description": "System exceptions, API failures and runtime error telemetry",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 100 },
+        "message": { "type": "string", "maxLength": 2000 },
+        "stack": { "type": "string", "maxLength": 10000 },
+        "endpoint": { "type": "string", "maxLength": 255 },
+        "method": { "type": "string", "maxLength": 20 },
+        "statusCode": { "type": "number" },
+        "source": { "type": "string", "maxLength": 50 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "userEmail": { "type": "string", "maxLength": 255 },
+        "userAgent": { "type": "string", "maxLength": 500 },
+        "url": { "type": "string", "maxLength": 500 },
+        "timestamp": { "type": "number" },
+        "timeLabel": { "type": "string", "maxLength": 50 },
+        "severity": { "type": "string", "enum": ["CRITICAL", "HIGH", "MEDIUM", "LOW"] },
+        "status": { "type": "string", "enum": ["NEW", "INVESTIGATING", "RESOLVED"] },
+        "resolvedAt": { "type": "number" }
+      },
+      "required": ["id", "message", "timestamp", "severity", "status"]
+    }
+  },
+  "firestore": {
+    "/admins/{adminId}": {
+      "schema": { "$ref": "#/entities/Admin" },
+      "description": "Elevated administrator and operator role mapping"
+    },
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Player profile records"
+    },
+    "/users/{userId}/wallets/{walletId}": {
+      "schema": { "$ref": "#/entities/Wallet" },
+      "description": "Player wallet balance documents"
+    },
+    "/users/{userId}/transactions/{txId}": {
+      "schema": { "$ref": "#/entities/Transaction" },
+      "description": "Financial ledger transaction audit trails"
+    },
+    "/users/{userId}/kyc_documents/{docId}": {
+      "schema": { "$ref": "#/entities/KycDocument" },
+      "description": "Google Drive KYC document attachments per user"
+    },
+    "/users/{userId}/notifications/{notificationId}": {
+      "schema": { "$ref": "#/entities/Notification" },
+      "description": "Real-time user notifications subcollection"
+    },
+    "/security_events/{eventId}": {
+      "schema": { "$ref": "#/entities/SecurityEvent" },
+      "description": "Real-time HMAC signature verification and security attack logs"
+    },
+    "/ip_rate_limits/{ipId}": {
+      "schema": { "$ref": "#/entities/IpRateLimit" },
+      "description": "Edge IP rate limiting and threshold telemetry"
+    },
+    "/webhook_logs/{webhookId}": {
+      "schema": { "$ref": "#/entities/WebhookLog" },
+      "description": "Incoming webhook payloads intercepted and logged for audit tracking and inspector replay"
+    },
+    "/SystemErrors/{errorId}": {
+      "schema": { "$ref": "#/entities/SystemError" },
+      "description": "Runtime system exceptions and API failure telemetry logs"
+    }
+  }
+}

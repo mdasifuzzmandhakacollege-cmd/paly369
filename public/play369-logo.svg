@@ -1,0 +1,215 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradients -->
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#043220"/>
+      <stop offset="45%" stop-color="#021c12"/>
+      <stop offset="85%" stop-color="#011009"/>
+      <stop offset="100%" stop-color="#000604"/>
+    </radialGradient>
+
+    <!-- Metallic Gold Gradients -->
+    <linearGradient id="goldRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe680"/>
+      <stop offset="25%" stop-color="#dfa837"/>
+      <stop offset="50%" stop-color="#fff2a3"/>
+      <stop offset="75%" stop-color="#b8831f"/>
+      <stop offset="100%" stop-color="#ecc055"/>
+    </linearGradient>
+
+    <linearGradient id="goldLight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fff6b8"/>
+      <stop offset="35%" stop-color="#e5b242"/>
+      <stop offset="65%" stop-color="#9d6d13"/>
+      <stop offset="100%" stop-color="#ffd566"/>
+    </linearGradient>
+
+    <linearGradient id="goldChisel" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#fff8cc"/>
+      <stop offset="30%" stop-color="#e2ab39"/>
+      <stop offset="50%" stop-color="#fced93"/>
+      <stop offset="70%" stop-color="#a87418"/>
+      <stop offset="100%" stop-color="#fadc69"/>
+    </linearGradient>
+
+    <!-- Emerald 3D Gradients for 369 -->
+    <linearGradient id="emerald369" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="30%" stop-color="#059669"/>
+      <stop offset="70%" stop-color="#047857"/>
+      <stop offset="100%" stop-color="#064e3b"/>
+    </linearGradient>
+
+    <linearGradient id="emeraldInner" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="50%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#065f46"/>
+    </linearGradient>
+
+    <!-- Drop Shadows and Glows -->
+    <filter id="shadowGold" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.9"/>
+    </filter>
+    <filter id="glowGold" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feColorMatrix type="matrix" values="1 0 0 0 0.9  0 1 0 0 0.7  0 0 1 0 0.2  0 0 0 0.4 0"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Outer Rounded Square Frame -->
+  <rect x="12" y="12" width="488" height="488" rx="84" ry="84" fill="#040906" stroke="url(#goldRim)" stroke-width="8" filter="url(#shadowGold)"/>
+  <rect x="24" y="24" width="464" height="464" rx="72" ry="72" fill="none" stroke="#b8831f" stroke-width="2" opacity="0.6"/>
+
+  <!-- Inner Circular Emblem Badge -->
+  <circle cx="256" cy="256" r="216" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle Background Watermark Accent -->
+  <path d="M 256 90 C 230 140, 150 200, 150 256 C 150 300, 190 330, 230 330 C 245 330, 252 320, 256 312 C 260 320, 267 330, 282 330 C 322 330, 362 300, 362 256 C 362 200, 282 140, 256 90 Z" fill="#0a3d27" opacity="0.18"/>
+
+  <!-- Double Circular Gold Rim -->
+  <circle cx="256" cy="256" r="216" fill="none" stroke="url(#goldRim)" stroke-width="7" filter="url(#shadowGold)"/>
+  <circle cx="256" cy="256" r="206" fill="none" stroke="url(#goldRim)" stroke-width="2" opacity="0.85"/>
+
+  <!-- ================= CROWN ================= -->
+  <g id="crown" filter="url(#shadowGold)">
+    <!-- Crown Base Band -->
+    <path d="M 190 148 C 220 156, 292 156, 322 148 L 320 138 C 290 146, 222 146, 192 138 Z" fill="url(#goldChisel)"/>
+    <ellipse cx="256" cy="148" rx="64" ry="7" fill="none" stroke="#fff8cc" stroke-width="1.5" opacity="0.8"/>
+    
+    <!-- Crown Spikes -->
+    <path d="M 190 140 
+             L 174 88 
+             L 214 116 
+             L 256 58 
+             L 298 116 
+             L 338 88 
+             L 322 140 
+             C 292 150, 220 150, 190 140 Z" 
+          fill="url(#goldLight)" stroke="url(#goldRim)" stroke-width="2.5"/>
+
+    <!-- Crown Center Emerald Jewel -->
+    <polygon points="256,76 268,98 256,120 244,98" fill="url(#emerald369)" stroke="#fff2a3" stroke-width="2"/>
+    <polygon points="256,82 264,98 256,114 248,98" fill="#34d399" opacity="0.85"/>
+    
+    <!-- Crown Pearl Tips -->
+    <circle cx="174" cy="88" r="5" fill="#fff9d6" stroke="#b8831f" stroke-width="1.5"/>
+    <circle cx="256" cy="58" r="7" fill="#fff9d6" stroke="#b8831f" stroke-width="2"/>
+    <circle cx="338" cy="88" r="5" fill="#fff9d6" stroke="#b8831f" stroke-width="1.5"/>
+    <circle cx="214" cy="116" r="3.5" fill="#fff9d6"/>
+    <circle cx="298" cy="116" r="3.5" fill="#fff9d6"/>
+  </g>
+
+  <!-- ================= PLAY TEXT (EMBOSSED 3D GOLD) ================= -->
+  <g id="play-text" filter="url(#shadowGold)">
+    <text x="256" y="246" 
+          text-anchor="middle" 
+          font-family="'Inter', 'Arial Black', Impact, sans-serif" 
+          font-weight="900" 
+          font-size="94" 
+          letter-spacing="5"
+          fill="url(#goldLight)"
+          stroke="url(#goldRim)"
+          stroke-width="3.5">
+      PLAY
+    </text>
+    <!-- Highlight Inner Overlay for PLAY -->
+    <text x="256" y="246" 
+          text-anchor="middle" 
+          font-family="'Inter', 'Arial Black', Impact, sans-serif" 
+          font-weight="900" 
+          font-size="94" 
+          letter-spacing="5"
+          fill="url(#goldChisel)"
+          opacity="0.35">
+      PLAY
+    </text>
+  </g>
+
+  <!-- ================= 369 NUMBER (EMERALD WITH GOLD RIM) ================= -->
+  <g id="number-369" filter="url(#shadowGold)">
+    <!-- Bevel Outline Behind -->
+    <text x="256" y="372" 
+          text-anchor="middle" 
+          font-family="'Inter', 'Arial Black', Impact, sans-serif" 
+          font-weight="900" 
+          font-size="134" 
+          letter-spacing="2"
+          fill="#022114"
+          stroke="url(#goldRim)"
+          stroke-width="12"
+          stroke-linejoin="round">
+      369
+    </text>
+    <!-- Inner Gold Accent -->
+    <text x="256" y="372" 
+          text-anchor="middle" 
+          font-family="'Inter', 'Arial Black', Impact, sans-serif" 
+          font-weight="900" 
+          font-size="134" 
+          letter-spacing="2"
+          fill="url(#emerald369)"
+          stroke="url(#goldLight)"
+          stroke-width="3"
+          stroke-linejoin="round">
+      369
+    </text>
+    <!-- Specular Highlight Curve on 369 -->
+    <text x="256" y="372" 
+          text-anchor="middle" 
+          font-family="'Inter', 'Arial Black', Impact, sans-serif" 
+          font-weight="900" 
+          font-size="134" 
+          letter-spacing="2"
+          fill="url(#emeraldInner)"
+          opacity="0.6">
+      369
+    </text>
+  </g>
+
+  <!-- ================= SUBTITLE ================= -->
+  <g id="subtitle">
+    <text x="256" y="408" 
+          text-anchor="middle" 
+          font-family="'Inter', -apple-system, BlinkMacSystemFont, sans-serif" 
+          font-weight="800" 
+          font-size="15" 
+          letter-spacing="4.5"
+          fill="#fef08a"
+          opacity="0.95">
+      NEXT-GEN SEAMLESS GAMING
+    </text>
+  </g>
+
+  <!-- ================= SUIT PIPS (♠ ♥ ♦ ♣) ================= -->
+  <g id="card-suits" fill="url(#goldLight)" stroke="#854d0e" stroke-width="0.5" opacity="0.9">
+    <!-- Center Diamond Accent -->
+    <polygon points="256,420 262,427 256,434 250,427" fill="#fff59d"/>
+
+    <!-- Spade ♠ -->
+    <g transform="translate(196, 436) scale(0.65)">
+      <path d="M 0,-14 C -6,-5 -14,2 -14,10 C -14,16 -9,20 -3,20 C 1,20 4,18 6,15 L 2,24 L 10,24 L 6,15 C 8,18 11,20 15,20 C 21,20 26,16 26,10 C 26,2 18,-5 12,-14 Z"/>
+    </g>
+
+    <!-- Heart ♥ -->
+    <g transform="translate(236, 442) scale(0.65)">
+      <path d="M 0,5 C -4,-2 -11,-2 -11,4 C -11,9 0,16 0,16 C 0,16 11,9 11,4 C 11,-2 4,-2 0,5 Z"/>
+    </g>
+
+    <!-- Diamond ♦ -->
+    <g transform="translate(276, 442) scale(0.65)">
+      <polygon points="0,-8 9,3 0,14 -9,3"/>
+    </g>
+
+    <!-- Club ♣ -->
+    <g transform="translate(316, 440) scale(0.65)">
+      <circle cx="0" cy="-5" r="6"/>
+      <circle cx="-6" cy="4" r="6"/>
+      <circle cx="6" cy="4" r="6"/>
+      <path d="M -2,4 L -4,14 L 4,14 L 2,4 Z"/>
+    </g>
+  </g>
+</svg>

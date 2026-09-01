@@ -1,0 +1,31 @@
+# Code Ownership Configuration
+# Defines ownership and review responsibilities across security, database, and platform domains.
+
+# Global default
+* @mdasifuzzmandhakacollege-cmd
+
+# CI/CD & Delivery Pipelines
+/.github/ @mdasifuzzmandhakacollege-cmd
+/.github/workflows/ @mdasifuzzmandhakacollege-cmd
+
+# Security, Auth & Access Control
+/src/middleware/auth.ts @mdasifuzzmandhakacollege-cmd
+/src/lib/firebase-admin.ts @mdasifuzzmandhakacollege-cmd
+/firestore.rules @mdasifuzzmandhakacollege-cmd
+/firebase-blueprint.json @mdasifuzzmandhakacollege-cmd
+
+# Server & Authoritative API Layer
+/server.ts @mdasifuzzmandhakacollege-cmd
+/src/server/ @mdasifuzzmandhakacollege-cmd
+
+# Database & Schema Definitions
+/src/db/ @mdasifuzzmandhakacollege-cmd
+/drizzle.config.ts @mdasifuzzmandhakacollege-cmd
+
+# Configuration, Governance & Dependencies
+/package.json @mdasifuzzmandhakacollege-cmd
+/package-lock.json @mdasifuzzmandhakacollege-cmd
+/tsconfig.json @mdasifuzzmandhakacollege-cmd
+/vite.config.ts @mdasifuzzmandhakacollege-cmd
+/.github/CODEOWNERS @mdasifuzzmandhakacollege-cmd
+/docs/ @mdasifuzzmandhakacollege-cmd

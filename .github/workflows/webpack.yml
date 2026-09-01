@@ -1,0 +1,52 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# Least privilege security permissions: Read-only access to repository contents
+permissions:
+  contents: read
+
+# Concurrency control: Cancel in-progress runs for stale PR commits
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x, 22.x]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Dependency Security Audit (Report All, Fail on High/Critical)
+      run: |
+        echo "=== Full Supply-Chain Dependency Audit Report ==="
+        npm audit || true
+        echo "=== Enforcing Zero High/Critical Security Gate ==="
+        npm audit --audit-level=high
+
+    - name: Type check & Lint (Fail Closed)
+      run: npm run lint
+
+    - name: Run CI Security & Regression Test Gate (Fail Closed)
+      run: npm test
+
+    - name: Build project (Vite + Server)
+      run: npm run build

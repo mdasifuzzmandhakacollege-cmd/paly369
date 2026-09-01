@@ -1,0 +1,8 @@
+{
+  "name": "Remix iGaming Seamless Wallet Core Engine & Architecture Workbench",
+  "description": "Production-grade B2B Seamless Wallet engine for iGaming platforms featuring PostgreSQL ACID schema with Row-Level Locking, HMAC-SHA256 signature verification, Idempotency engine, provider simulation (/balance, /bet, /win, /refund), and real-time concurrency stress tester.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
