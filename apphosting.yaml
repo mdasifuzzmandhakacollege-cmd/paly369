@@ -1,7 +1,4 @@
 # Firebase App Hosting Configuration
-kind: apphosting.yaml
-schemaVersion: v1
-
 runConfig:
   minInstances: 0
   maxInstances: 10
@@ -9,8 +6,10 @@ runConfig:
   cpu: 1
   memoryMiB: 512
 
+scripts:
+  buildCommand: npm run build
+  runCommand: node index.js
+
 env:
-  - variable: PORT
-    value: 8080
   - variable: NODE_ENV
     value: production
